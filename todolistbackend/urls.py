@@ -16,10 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from rest_framework.authtoken import views
-from todolist.views import CustomAuthToken
+from todolist.views import CustomAuthToken, TodoItemView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', CustomAuthToken.as_view())
+    path('login/', CustomAuthToken.as_view()),
+    path('todos/', TodoItemView.as_view())
 ]
