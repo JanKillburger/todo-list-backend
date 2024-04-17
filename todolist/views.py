@@ -1,6 +1,7 @@
 
 from rest_framework.authtoken.views import ObtainAuthToken, APIView, Response
 from rest_framework.authtoken.models import Token
+from rest_framework import authentication, permissions
 
 from todolist.models import Todo
 from todolist.serializers import TodoSerializer
@@ -22,8 +23,8 @@ class CustomAuthToken(ObtainAuthToken):
     
 
 class TodoItemView(APIView):
-    # authentication_classes = [authentication.TokenAuthentication]
-    permission_classes = []
+    authentication_classes = [authentication.TokenAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request, format=None):
         todos = Todo.objects.all()
